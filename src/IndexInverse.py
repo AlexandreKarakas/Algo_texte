@@ -15,6 +15,4 @@ class IndexInverse :
         self.contenu = contenu
         self.list_url = list_url_sorti
         self.score = score
-    
-    
 
