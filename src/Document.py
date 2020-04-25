@@ -28,7 +28,7 @@ def comparer_lettre (c1, c2) :
 
 def calculIDF(terme, collectionDocument) :
     freq = freqDocument(terme, collectionDocument)
-    idf = log(1/freq, 2)
+    idf = log(len(collectionDocument)/freq, 2)
     return idf
 
 def freqDocument(terme, collectionDocument):
