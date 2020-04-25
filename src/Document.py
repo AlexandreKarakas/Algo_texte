@@ -9,8 +9,8 @@ def calculTF(terme, document):
 
 def ParcoursNaif(terme, document) :
     occ = 0
-    n = len(terme)
-    m = len(document)
+    m = len(terme)
+    n = len(document)
     for i in range(0, n-m+1):
         j = 1
         while (j < m and comparer_lettre(document[i+j], terme[j])) :
