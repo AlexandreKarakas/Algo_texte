@@ -44,3 +44,8 @@ def calculTFIDF(terme, collectionDocument, document):
     idf = calculIDF(terme, collectionDocument)
     tf_idf = tf*idf
     return tf_idf
+
+def norm_log_tf(terme, document):
+    occ = ParcoursNaif(terme, document)
+    norm_log = 1 + np.log2(occ)
+    return norm_log
