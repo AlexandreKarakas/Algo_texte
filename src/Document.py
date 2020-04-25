@@ -1,4 +1,4 @@
-import numpy as np
+from math import log
 
 def calculTF(terme, document):
     occ = ParcoursNaif(terme, document)
@@ -28,7 +28,7 @@ def comparer_lettre (c1, c2) :
 
 def calculIDF(terme, collectionDocument) :
     freq = freqDocument(terme, collectionDocument)
-    idf = np.log2(1/freq)
+    idf = log(1/freq, 2)
     return idf
 
 def freqDocument(terme, collectionDocument):
@@ -47,5 +47,5 @@ def calculTFIDF(terme, collectionDocument, document):
 
 def norm_log_tf(terme, document):
     occ = ParcoursNaif(terme, document)
-    norm_log = 1 + np.log2(occ)
+    norm_log = 1 + log(occ, 2)
     return norm_log
