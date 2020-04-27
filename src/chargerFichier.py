@@ -6,7 +6,7 @@ import pickle
 import sys
 
 sys.setrecursionlimit(10**8)
-def chargerFichier(repertoire):
+def chargerfichier(repertoire):
     index = dict()
     Path = os.listdir(repertoire)
     ident = 0
@@ -21,5 +21,5 @@ def chargerFichier(repertoire):
             index[ident] = inv
             ident = ident + 1    
     fp.close()
+    return index
 
-chargerFichier(r'C:\\Users\\alexa\\Documents\\Master\\Algo_Texte\\pages_web\\pages_web\\')
