@@ -1,7 +1,7 @@
 from math import log
 
 def calculTF(terme, document):
-    occ = ParcoursNaif(terme, document)
+    occ = ParcoursNaif(terme, document.contenu)
     nbMot = len(document.split())
     tf = occ / nbMot
     return tf
@@ -28,16 +28,15 @@ def comparer_lettre (c1, c2) :
 
 def calculIDF(terme, collectionDocument) :
     freq = freqDocument(terme, collectionDocument)
-    idf = log(len(collectionDocument)/freq, 2)
+    idf = log((len(collectionDocument) - freq + 0.5 )/(freq + 0.5), 2)
     return idf
 
 def freqDocument(terme, collectionDocument):
     freq = 0
     for i in collectionDocument:
-        if (ParcoursNaif(terme, i) != 0):
+        if (ParcoursNaif(terme, i.contenu) != 0):
             freq = freq + 1
-    freq2 = freq/len(collectionDocument)
-    return freq2
+    return freq
 
 def calculTFIDF(terme, collectionDocument, document):
     tf = calculTF(terme, document)
@@ -46,22 +45,22 @@ def calculTFIDF(terme, collectionDocument, document):
     return tf_idf
 
 def norm_log_tf(terme, document):
-    occ = ParcoursNaif(terme, document)
+    occ = ParcoursNaif(terme, document.contenu)
     norm_log = 1 + log(occ, 2)
     return norm_log
 
 def bm_25(terme, document, collectionDocument):
-    occ = ParcoursNaif(terme, document)
+    occ = ParcoursNaif(terme, document.contenu)
     k1 = 1.3
     b = 0.75
     moy = avgdl(collectionDocument)
     idf = calculIDF(terme, collectionDocument)
-    form = idf * ((occ * (k1 + 1))/(occ + k1 * (1 - b + b * (len(document)/moy))))
+    form = idf * ((occ * (k1 + 1))/(occ + k1 * (1 - b + b * (len(document.contenu)/moy))))
     return form
 
 def avgdl(collectionDocument) :
     value = 0
     for i in collectionDocument :
-        value = value + len(i)   
+        value = value + len(i.contenu)   
     value = value/len(collectionDocument)
     return value
