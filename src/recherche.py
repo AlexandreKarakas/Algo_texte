@@ -20,4 +20,8 @@ def recherche(liste_mot, collectionDocument):
     index_trie = trie(index_trie)
     return index_trie
 
+def affiche_page(fichier) :
+    for i in range(0, 10) :
+        print(fichier[i])
+
 recherche("breuvart", index)
