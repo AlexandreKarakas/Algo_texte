@@ -22,6 +22,6 @@ def recherche(liste_mot, collectionDocument):
 
 def affiche_page(fichier) :
     for i in range(0, 10) :
-        print(fichier[i])
+        print(fichier[i].contenu)
 
 recherche("breuvart", index)
