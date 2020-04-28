@@ -17,5 +17,7 @@ def recherche(liste_mot, collectionDocument):
             score = score + D.bm_25(var, document, collectionDocument)
         document.score = score
         index_trie.append(document)
-        print(score)
+    index_trie = trie(index_trie)
+    return index_trie
+
 recherche("breuvart", index)

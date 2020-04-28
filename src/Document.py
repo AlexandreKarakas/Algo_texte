@@ -13,7 +13,7 @@ def ParcoursNaif(terme, document) :
     n = len(document)
     for i in range(0, n-m+1):
         j = 1
-        while (j <= m and comparer_lettre(document[i+j], terme[j])) :
+        while (j < m and comparer_lettre(document[i+j], terme[j])) :
             j = j+1
         if (j == m) :
             occ = occ + 1
@@ -28,7 +28,7 @@ def comparer_lettre (c1, c2) :
 
 def calculIDF(terme, collectionDocument) :
     freq = freqDocument(terme, collectionDocument)
-    idf = log((len(collectionDocument) - freq + 0.5 )/(freq + 0.5), 2)
+    idf = log(len(collectionDocument)/freq,2)
     return idf
 
 def freqDocument(terme, collectionDocument):
