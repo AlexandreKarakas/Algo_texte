@@ -5,7 +5,7 @@ import Document as D
 index = chargerFichier.chargerfichier(r'C:\\Users\\alexa\\Documents\\Master\\Algo_Texte\\pages_web\\pages_web\\')
 
 def trie(fichier):
-    fichier_trier = sorted(fichier, key=attrgetter("score"))
+    fichier_trier = sorted(fichier, key=attrgetter("score"), reverse=True)
     return fichier_trier
 
 def recherche(liste_mot, collectionDocument):
@@ -20,7 +20,7 @@ def recherche(liste_mot, collectionDocument):
     index_trie = trie(index_trie)
     return index_trie
 
-def affiche_page(fichier) :
+def recuperer_liste_page(fichier) :
     for i in range(0, 10) :
         print(fichier[i].contenu)
 
