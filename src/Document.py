@@ -13,7 +13,7 @@ def ParcoursNaif(terme, document) :
     n = len(document)
     for i in range(0, n-m+1):
         j = 1
-        while (j < m and comparer_lettre(document[i+j], terme[j])) :
+        while (j <= m and comparer_lettre(document[i+j], terme[j])) :
             j = j+1
         if (j == m) :
             occ = occ + 1

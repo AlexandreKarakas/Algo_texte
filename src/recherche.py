@@ -18,4 +18,4 @@ def recherche(liste_mot, collectionDocument):
         document.score = score
         index_trie.append(document)
         print(score)
-recherche("vérification", index)
+recherche("breuvart", index)

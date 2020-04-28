@@ -15,7 +15,6 @@ def chargerfichier(repertoire):
             soup = BeautifulSoup(fp, features="html5lib")
             titre = soup.title
             contenu = soup.find_all('body')
-            print(contenu)
             url = soup.find_all('a')
             inv = IndexInverse.IndexInverse(titre, var, contenu, url, 0)
             index.append(inv)   
