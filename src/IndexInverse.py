@@ -1,6 +1,5 @@
 class IndexInverse :
     """Classe pour l'index inverse : 
-    -Identifiant
     -Titre
     -url de depart
     -Contenu
