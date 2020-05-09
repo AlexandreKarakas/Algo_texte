@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-  <meta charset="utf-8">
-  <title>SERP</title>
-  <meta name="description" value="The search engine that doesn't track you. Learn More.">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="/static/colors.css">
-  <link rel="stylesheet" type="text/css" href="/static/modal.css">
-  <link rel="stylesheet" type="text/css" href="/static/serp.css?1">
-  <meta name="author" value="vanGato">
+    <meta charset="utf-8">
+  	<meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{{textToSearch}} - Recherche Google-Eco+</title>
+    <meta name="description" value="Le moteur de recherche semblable à Google, mais en version Eco+">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" type="text/css" href="/static/colors.css">
+    <link rel="stylesheet" type="text/css" href="/static/search.css?1">
 </head>
+
 <body>
-  <div class="serp">
-    <div class="serp__layout">
-      <div class="serp__header">
-        <div class="serp__search">
-          <form class="serp__form" action="search" method="GET">
+  <div class="search">
+    <div class="search__layout">
+      <div class="search__header">
+        <div class="search__search">
+          <form class="search__form" action="search" method="GET">
             <div>
               <input name="textToSearch" type="search" value="{{textToSearch}}"
-                     class="serp__query" 
+                     class="search__query" 
                      maxlength="512"
                      autocomplete="off"
                      title="Search"
@@ -28,21 +30,21 @@
                      autofocus="autofocus"
               >
             </div>
-            <button class="serp__button" aria-label="Search" type="submit">
-              <div class="serp__ico"></div>
+            <button class="search__button" aria-label="Search" type="submit">
+              <div class="search__ico"></div>
             </button>
           </form>
         </div>
-        <a class="serp__logo" href="/">Google-Eco+</a>
+        <a class="search__logo" href="/"><img src="../static/logo.png" alt="Google-Eco+" style="height:40px;"/></a>
       </div>
     </div>
-    <div class="serp__body">
-      <div class="serp__main serp__results">
-        <div class="serp__web">
-          <span class="serp__label">Résultats Web</span>
+    <div class="search__body">
+      <div class="search__main search__results">
+        <div class="search__web">
+          <span class="search__label">Résultats Web</span>
 		  
 		  {% if resList|length == 0 %}
-		  <div class="serp__no-results">
+		  <div class="search__no-results">
             <p><strong>Aucun résultat n'a été trouvé pour &laquo;{{textToSearch}}&raquo;</strong></p>
             <p>Recommandations :</p>
             <ul>
@@ -55,10 +57,10 @@
 		  {% endif %}
 		  
 		  {% for res in resList %}
-		  <div class="serp__result">
+		  <div class="search__result">
 		    <a href="{{ url_for('static', filename='pages_web/' ~ res.filename) }}">
-			  <div class="serp__title">{{res.titre.string}}</div>
-			  <div class="serp__url">{{res.urlD}}</div>
+			  <div class="search__title">{{res.titre.string}}</div>
+			  <div class="search__url">{{res.urlD}}</div>
 			</a>
 		  </div>
 		  {% endfor %}

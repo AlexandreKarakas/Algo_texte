@@ -26,7 +26,7 @@ def search():
     req = request.args.get('textToSearch')
     if(req == ''):
         return redirect(url_for('index'))
-    resList2 = r.recherche(req, index)
+    resList2 = r.recherche_debug(req, index)
     top10 = r.getTop10pages(resList2)
     return render_template('search.html', textToSearch=req, resList=top10)
 

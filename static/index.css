@@ -49,3 +49,10 @@ body,html{
     .custom-checkbox .custom-control-input:focus ~ .custom-control-indicator {
       box-shadow: none !important; 
     }
+    
+footer{
+    position:fixed;
+    left:0;
+    bottom:0;
+    width:100%;
+}
