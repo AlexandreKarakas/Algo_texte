@@ -75,6 +75,7 @@ def avgdl_and_idf(terme, collectionDocument):
         value = value + len(i.contenu)
         if (ParcoursNaif(terme, i.contenu) != 0):
             freq = freq + 1
+    value = value/len(collectionDocument)
     if (freq == 0) :
         liste = [value, 0]
         return liste
