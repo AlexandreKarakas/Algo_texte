@@ -1,6 +1,7 @@
 import chargerFichier
 from operator import attrgetter
 import Document as D
+from nltk.probability import FreqDist
 
 #index = chargerFichier.chargerfichier(r'C:\\Users\\alexa\\Documents\\Master\\Algo_Texte\\pages_web\\pages_web\\')
 index = chargerFichier.chargerfichier('./pages_web/')
@@ -15,7 +16,7 @@ def recherche(liste_mot, collectionDocument):
 	for document in collectionDocument :
 		score = 0
 		for var in liste:
-			score = score + D.bm_25(D.findStem(var), document, collectionDocument)
+			score = score + D.bm_25(var, document, collectionDocument)
 		document.score = score
 		index_trie.append(document)
 	index_trie = trie(index_trie)
@@ -43,19 +44,34 @@ def distancePages(page1, page2):
 	d = 0
 	contenu1 = page1.contenu
 	contenu2 = page2.contenu
-	print(contenu1)
 	d = d + D.similar(contenu1,contenu2)
 	return d
 
-# supprime les pages trop similaires (à finir)
+# supprime les pages trop similaires (pas opti)
 def supprimerPages(collectionDocument):
-	for document in collectionDocument:
-		for i in collectionDocument:
-			if document != i and distancePages(document,i) > 0.75:
-				print(document.urlD)
+	res = set()
+	t = len(collectionDocument)
+	doc = collectionDocument
+	for document1 in doc:
+		for document2 in doc:
+			if document1 != document2:
+				# les pages ne sont pas assez proches (75% de similarité entre les deux pages)
+				if distancePages(document1,document2) < 0.75:
+					res.add(document1)
+				# les pages sont trop proches
+				else:
+					doc.remove(document2)
+	print(str(t-len(res)) + ' pages supprimés')
+	return list(res)
+	
+# test supprimerPages
+new_index = supprimerPages(index)
+for i in new_index:
+	print(i.urlD)
 
 # recherche avec une erreur
 test = recherche2("breuvard",index)
 for i in test:
 	print(i.urlD + ' ' + str(i.score))
+	
 	
