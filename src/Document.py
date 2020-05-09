@@ -67,3 +67,28 @@ def avgdl(collectionDocument) :
         value = value + len(i.contenu)   
     value = value/len(collectionDocument)
     return value
+
+def avgdl_and_idf(terme, collectionDocument):
+    value = 0
+    freq = 0
+    for i in collectionDocument :
+        value = value + len(i.contenu)
+        if (ParcoursNaif(terme, i.contenu) != 0):
+            freq = freq + 1
+    if (freq == 0) :
+        liste = [value, 0]
+        return liste
+    else :
+        idf = log(len(collectionDocument)/freq,2)
+        liste = [value, idf]
+        return liste
+
+def bm_25_opti(terme, document, collectionDocument):
+    occ = ParcoursNaif(terme, document.contenu)
+    k1 = 1.3
+    b = 0.75
+    liste = avgdl_and_idf(terme, collectionDocument)
+    moy = liste[0]
+    idf = liste[1]
+    form = idf * ((occ * (k1 + 1))/(occ + k1 * (1 - b + b * (len(document.contenu)/moy))))
+    return form

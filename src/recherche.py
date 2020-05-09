@@ -14,7 +14,7 @@ def recherche(liste_mot, collectionDocument):
     for document in collectionDocument :
         score = 0
         for var in liste:
-            score = score + D.bm_25(var, document, collectionDocument)
+            score = score + D.bm_25_opti(var, document, collectionDocument)
         document.score = score
         index_trie.append(document)
     index_trie = trie(index_trie)
