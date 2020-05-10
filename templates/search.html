@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+  	<meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{{textToSearch}} - Recherche Google-Eco+</title>
+    <meta name="description" value="Le moteur de recherche semblable à Google, mais en version Eco+">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" type="text/css" href="/static/colors.css">
+    <link rel="stylesheet" type="text/css" href="/static/search.css?1">
+</head>
+
+<body>
+  <div class="search">
+    <div class="search__layout">
+      <div class="search__header">
+        <div class="search__search">
+          <form class="search__form" action="search" method="GET">
+            <div>
+              <input name="textToSearch" type="search" value="{{textToSearch}}"
+                     class="search__query" 
+                     maxlength="512"
+                     autocomplete="off"
+                     title="Search"
+                     aria-label="Search"
+                     dir="ltr"
+                     spellcheck="false"
+                     autofocus="autofocus"
+              >
+            </div>
+            <button class="search__button" aria-label="Search" type="submit">
+              <div class="search__ico"></div>
+            </button>
+          </form>
+        </div>
+        <a class="search__logo" href="/"><img src="../static/logo.png" alt="Google-Eco+" style="height:40px;"/></a>
+      </div>
+    </div>
+    <div class="search__body">
+      <div class="search__main search__results">
+        <div class="search__web">
+          <span class="search__label">Résultats Web</span>
+		  
+		  {% if resList|length == 0 %}
+		  <div class="search__no-results">
+            <p><strong>Aucun résultat n'a été trouvé pour &laquo;{{textToSearch}}&raquo;</strong></p>
+            <p>Recommandations :</p>
+            <ul>
+              <li>Vérifiez que tous les mots ont été écrit correctement.</li>
+              <li>Essayez d'autres termes de recherche.</li>
+              <li>Essayez de faire une recherche plus générale.</li>
+              <li>Essayez de mettre moins de termes de recherche.</li>
+            </ul>
+          </div>
+		  {% endif %}
+		  
+		  {% for res in resList %}
+		  <div class="search__result">
+		    <a href="{{ url_for('static', filename='pages_web/' ~ res.filename) }}">
+			  <div class="search__title">{{res.titre.string}}</div>
+			  <div class="search__url">{{res.urlD}}</div>
+			</a>
+		  </div>
+		  {% endfor %}
+		  
+      </div>
+    </div>
+  </div>
+</body>
+</html>
