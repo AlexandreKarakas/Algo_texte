@@ -21,6 +21,7 @@ La manipulation est très simple, il suffit tout simplement de lancer le fichier
 *(La variable entre crochets est optionnelle)*
 
 Par défaut, le port choisi est le port 5000. Le serveur démarrera donc sur ce port-là si vous ne précisez pas le numéro du port que vous souhaitez utiliser.
+
 ![Démarrage du serveur](./src/readme1.png)
 
 ### 3. Utiliser le moteur de recherche
