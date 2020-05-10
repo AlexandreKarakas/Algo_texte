@@ -1,3 +1,4 @@
+import os
 class IndexInverse :
     """Classe pour l'index inverse : 
     -Titre
@@ -13,4 +14,6 @@ class IndexInverse :
         self.contenu = contenu
         self.list_url = list_url_sorti
         self.score = score
+        path,file_=os.path.split(urlDepart)
+        self.filename= file_
 
