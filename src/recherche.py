@@ -10,41 +10,18 @@ def trie(fichier):
     return fichier_trier
 
 def recherche(liste_mot, collectionDocument):
+    moy = D.avgdl(collectionDocument)
     liste = liste_mot.split()
     index_trie = list()
+    idf = list()
+    for var in liste:
+        idf.append(D.calculIDF(var, collectionDocument))
     for document in collectionDocument :
+        i = 0
         score = 0
         for var in liste:
-            score = score + D.bm_25_opti(var, document, collectionDocument)
-        document.score = score
-        index_trie.append(document)
-    index_trie = trie(index_trie)
-    return index_trie
-
-#A n'utiliser que pour le debug ou si le programme est trop long
-
-def recherche_debug(liste_mot, collectionDocument):
-    liste = liste_mot.split()
-    index_trie = list()
-    value = 0
-    freq = 0
-    for document in collectionDocument :
-        score = 0
-        for var in liste:
-            occ = D.ParcoursNaif(var, document.contenu)
-            k1 = 1.3
-            b = 0.75
-            value = value + len(document.contenu)
-            if (occ != 0):
-                freq = freq + 1
-            value = value/len(collectionDocument)
-            if (freq == 0) :
-                idf = 0
-            else :
-                idf = log(len(collectionDocument)/freq,2)
-            moy = value
-            form = idf * ((occ * (k1 + 1))/(occ + k1 * (1 - b + b * (len(document.contenu)/moy))))
-            score = score + form
+            score = score + D.bm_25(var, document, moy, idf[i])
+            i = i + 1
         document.score = score
         index_trie.append(document)
     index_trie = trie(index_trie)
