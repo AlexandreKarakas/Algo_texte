@@ -48,6 +48,7 @@ def recherche2(liste_mot, collectionDocument):
 		score = 0
 		for var in liste:
 			score = score + D.bm_25v2(var, document, moy, idf[i])
+            i = i + 1
 		document.score = score
 		if score > 0:	
 			index_trie.append(document)
@@ -103,16 +104,16 @@ def motsProches(mot, collectionDocument):
 	return mots
 	
 # test supprimerPages
-#index = loadIndex()
-#index = supprimerPages(index)
+"""index = loadIndex()
+index = supprimerPages(index)"""
 	
 # test motsProches
-'''test = motsProches("euvar",index)
+"""test = motsProches("euvar",index)
 for i in test:
-	print(i)'''
+	print(i)"""
 
 # recherche avec une erreur
-'''test = recherche2("breuvatr",index)
+"""test = recherche2("breuvatr",index)
 for i in test:
-	print(i.filename)'''
+	print(i.filename)"""
 	
