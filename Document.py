@@ -44,9 +44,7 @@ def ParcoursNaif2(terme, document) :
     tmp = document.split()
     for i in tmp:
         if racine in retirerBalises(i):
-            print(retirerBalises(i))
             occ = occ + 1
-        # le mot est suffisament proche du terme
         elif similar(racine, retirerBalises(i)) >= 0.75:
             occ = occ + similar(racine, retirerBalises(i))
     return occ
@@ -93,7 +91,7 @@ def bm_25(terme, document, collectionDocument):
     return form
     
 def bm_25v2(terme, document, collectionDocument):
-    occ = ParcoursNaif2(terme, document.contenu)
+    occ = ParcoursNaif2(terme, retirerBalises(document.contenu))
     k1 = 1.3
     b = 0.75
     moy = avgdl(collectionDocument)
