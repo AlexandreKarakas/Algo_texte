@@ -28,7 +28,8 @@ def recherche(liste_mot, collectionDocument):
             score = score + D.bm_25(var, document, moy, idf[i])
             i = i + 1
         document.score = score
-        index_trie.append(document)
+        if (score > 0) :
+            index_trie.append(document)
     index_trie = trie(index_trie)
     return index_trie
 
