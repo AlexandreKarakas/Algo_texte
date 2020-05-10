@@ -1,5 +1,4 @@
 import os
-
 class IndexInverse :
     """Classe pour l'index inverse : 
     -Titre

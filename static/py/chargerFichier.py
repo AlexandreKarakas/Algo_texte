@@ -4,6 +4,7 @@ import IndexInverse
 import Document
 import pickle
 import sys
+import io
 
 sys.setrecursionlimit(10**8)
 def chargerfichier(repertoire):
@@ -11,8 +12,8 @@ def chargerfichier(repertoire):
     Path = os.listdir(repertoire)
     for var in Path :
         var = repertoire + var
-        with open(var, encoding="ISO-8859-1", mode="r") as fp :
-            soup = BeautifulSoup(fp, 'html.parser')
+        with io.open(var, encoding="UTF-8", errors= 'replace' ,mode="r") as fp :
+            soup = BeautifulSoup(fp, features="html5lib")
             titre = soup.title
             contenu = str(soup.find_all('body'))
             url = soup.find_all('a')

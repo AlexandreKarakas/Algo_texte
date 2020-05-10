@@ -52,12 +52,12 @@ def norm_log_tf(terme, document):
     norm_log = 1 + log(occ, 2)
     return norm_log
 
-def bm_25(terme, document, collectionDocument):
+def bm_25(terme, document, moy, idf):
     occ = ParcoursNaif(terme, document.contenu)
     k1 = 1.3
     b = 0.75
-    moy = avgdl(collectionDocument)
-    idf = calculIDF(terme, collectionDocument)
+    #moy = avgdl(collectionDocument)
+    #idf = calculIDF(terme, collectionDocument)
     form = idf * ((occ * (k1 + 1))/(occ + k1 * (1 - b + b * (len(document.contenu)/moy))))
     return form
 
@@ -67,3 +67,6 @@ def avgdl(collectionDocument) :
         value = value + len(i.contenu)   
     value = value/len(collectionDocument)
     return value
+
+
+
